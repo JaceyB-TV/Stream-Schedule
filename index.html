@@ -1,69 +1,38 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
 </head>
-
 <body>
-
     <div class="main-container">
-
+        <div class="header-container">
+            <h1>Schedule</h1>
+        </div>
         <div class="table-container"></div>
-
     </div>
-
 </body>
-
 </html>
-
 <script>
-
     const head = document.getElementsByTagName("head")[0];
 
-
-
     let scheduleCss = document.createElement("link"),
-
         scheduleData = document.createElement("script"),
-
         scheduleJs = document.createElement("script");
 
-
-
     scheduleCss.href = "schedule.css?date" + Date.now();
-
     scheduleCss.type = "text/css";
-
     scheduleCss.rel = "stylesheet";
-
-
 
     head.append(scheduleCss);
 
-
-
     scheduleData.type = "text/javascript";
-
     scheduleData.src = "data.js?date=" + Date.now();
 
-
-
     scheduleJs.type = "text/javascript";
-
     scheduleJs.src = "schedule.js?date=" + Date.now();
-
-
 
     scheduleData.onload = () => head.append(scheduleJs);
 
-
-
     head.append(scheduleData);
-
 </script>
