@@ -1,9 +1,10 @@
 :root {
-    --dark-color: #835548;
-    --light-color: #dbad8c
+    --dark-color: #dbad8c;
+    --light-color: #835548;
 }
 
 body {
+    /* background-color: var(--light-color); */
     color: var(--dark-color);
     font-family: 'Noto Sans Mono', sans-serif;
     font-size: 30px;
