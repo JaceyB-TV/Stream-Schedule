@@ -15,24 +15,39 @@
 </html>
 <script>
     const head = document.getElementsByTagName("head")[0];
+    
+    let links = ["schedule.css"],
+        scripts = ["data.js", "util.js", "schedule.js"];
 
-    let scheduleCss = document.createElement("link"),
-        scheduleData = document.createElement("script"),
-        scheduleJs = document.createElement("script");
 
-    scheduleCss.href = "schedule.css?date" + Date.now();
-    scheduleCss.type = "text/css";
-    scheduleCss.rel = "stylesheet";
+    links.forEach((file, index) => {
+        const link = document.createElement("link");
 
-    head.append(scheduleCss);
+        link.href = `${file}?date=${Date.now()}`
+        link.type = "text/css";
+        link.rel = "stylesheet";
 
-    scheduleData.type = "text/javascript";
-    scheduleData.src = "data.js?date=" + Date.now();
+        if (index > 0) {
+            links[index - 1].onload = () => head.append(link);
+        }
 
-    scheduleJs.type = "text/javascript";
-    scheduleJs.src = "schedule.js?date=" + Date.now();
+        links[index] = link;
+    });
 
-    scheduleData.onload = () => head.append(scheduleJs);
+    head.append(links[0]);
 
-    head.append(scheduleData);
+    scripts.forEach((file, index) => {
+        const script = document.createElement("script");
+
+        script.src = `${file}?date=${Date.now()}`;
+        script.type = "text/javascript";
+
+        if (index > 0) {
+            scripts[index - 1].onload = () => head.append(script);
+        }
+
+        scripts[index] = script;
+    });
+
+    head.append(scripts[0]);
 </script>
