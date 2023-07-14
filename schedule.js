@@ -4,13 +4,15 @@ const dateOptions = {
     hour12: true
 };
 
-const debugMode = true;
+const debugMode = false;
 
 function updateSchedule() {
     $(".table-container").empty()
 
     const table = $("<div>").addClass("table").appendTo(".table-container"),
         now = Date.now();
+
+    // $("<div>").addClass("left cell").appendTo($("<div>").addClass("row").appendTo(table)).html("Time (BST)")
 
     if (debugMode) {
         let start = 9;
@@ -23,7 +25,7 @@ function updateSchedule() {
 
     schedule.forEach(item => {
         const row = $("<div>").addClass("row").appendTo(table),
-            start = new Date(item.start).toLocaleDateString("en-GB", dateOptions).substring(12).toUpperCase();
+            start = formatTime(new Date(item.start));
 
         const left = $("<div>").addClass("left cell").appendTo(row).html(start);
 
